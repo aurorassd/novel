@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function deleteSubtitle(subtitleIndex) { if (currentNovelIndex === null) return; const novel = novels[currentNovelIndex]; if (subtitleIndex < 0 || subtitleIndex >= novel.subtitles.length) return; novel.subtitles.splice(subtitleIndex, 1); saveData(); renderNovelDetails(currentNovelIndex); }
     // Prompt Generation
     function generateCombinedNovelPrompt(novel) { return `\n# タイトル\n${novel.title || '（未設定）'}\n\n# 舞台設定\n${novel.setting || '（未設定）'}\n\n# キャラクター設定\n${novel.characters || '（未設定）'}\n`.trim(); }
-    function generateSubtitlePrompt(subtitle) { return `\n# サブタイトル: ${subtitle.subtitle || '（未設定）'}\n# 話数: 第${subtitle.episode || '?'}話\n# 長さ: ${subtitle.length || '（未設定）'}\n# トーン1(高): ${subtitle.tone1 || 'なし'}\n# トーン2(中): ${subtitle.tone2 || 'なし'}\n# トーン3(低): ${subtitle.tone3 || 'なし'}\n\n# プロット\n${subtitle.plot || '※ここからプロットスタート'}\n\n# 特記事項\n${subtitle.notes || '※ここから特記事項スタート'}\n`.trim(); }
+    function generateSubtitlePrompt(subtitle) { return `\n# サブタイトル: ${subtitle.subtitle || '（未設定）'}\n# 話数: 第${subtitle.episode || '?'}話\n# 長さ: ${subtitle.length || '（未設定）'}\n# トーン1(優先度高): ${subtitle.tone1 || 'なし'}\n# トーン2(優先度中): ${subtitle.tone2 || 'なし'}\n# トーン3(優先度低): ${subtitle.tone3 || 'なし'}\n\n# プロット\n${subtitle.plot || '※ここからプロットスタート'}\n\n# 特記事項\n${subtitle.notes || '※ここから特記事項スタート'}\n`.trim(); }
     function updateCombinedNovelPrompt() { combinedNovelPromptTextarea.value = (currentNovelIndex !== null && novels[currentNovelIndex]) ? generateCombinedNovelPrompt(novels[currentNovelIndex]) : ''; }
     function updateSubtitleToggleButtonText(button, text, episode) { button.textContent = `▼ ${episode || '?'}話: ${text || 'サブタイトル未入力'}`; }
     // Utility Functions
